@@ -28,7 +28,11 @@ server.get('/accounts/:id', (req,res)=> {
 server.post('/accounts', (req,res)=> {
     const postData = req.body
     console.log(postData)
-    db('accounts').insert(postData,)
+    db('accounts').insert(postData)
+        .then(accounts => {
+            res.status(200).json(accounts)
+        }) 
+        .catch(err => res.json(err))
 })
 
 server.put('/accounts/:id', (req,res)=> {
